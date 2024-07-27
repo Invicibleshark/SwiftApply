@@ -14,8 +14,8 @@ const puppeteer = require('puppeteer');
 
   // Login
   await page.waitForSelector("#modal_email");
-  await page.type("#modal_email", "keshav.narkudi@gmail.com");
-  await page.type("#modal_password", "Keshav#18");
+  await page.type("#modal_email", "keshavdi@gmail.com");
+  await page.type("#modal_password", "");
   await page.click('button#modal_login_submit');
   await page.waitForNavigation();
 
