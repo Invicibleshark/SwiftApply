@@ -5,34 +5,31 @@ const puppeteer = require('puppeteer');
   const page = await browser.newPage();
   await page.setViewport({ width: 1080, height: 1080 });
 
-  // Navigate to Internshala
   await page.goto('https://internshala.com/');
 
-  // Wait and click the login button
   await page.waitForSelector('button[data-toggle="modal"][data-target="#login-modal"].login-cta');
   await page.click('button[data-toggle="modal"][data-target="#login-modal"].login-cta');
 
-  // Login
   await page.waitForSelector("#modal_email");
   await page.type("#modal_email", "keshavdi@gmail.com");
   await page.type("#modal_password", "");
   await page.click('button#modal_login_submit');
   await page.waitForNavigation();
 
-  // Navigate to the internship page and apply filters
+
   await page.waitForSelector('.nav-link.dropdown-toggle.internship_link');
   await page.click('.nav-link.dropdown-toggle.internship_link');
 
-  // Wait for and click the filter checkbox
+
   await page.waitForSelector('input#matching_preference[name="matching_preference"]');
   await page.click('input#matching_preference[name="matching_preference"]');
 
-  // Wait for the filter results to update
+
   console.log('Waiting for filter results to update...');
   await new Promise(function (resolve, reject) {
     return setTimeout(resolve, 10000);
 });
-  // Extract internship details
+
   const internships = await page.evaluate(() => {
     const internshipElements = Array.from(document.querySelectorAll('#internship_list_container_1 .individual_internship'));
     return internshipElements.slice(0, 1).map(el => {
@@ -49,12 +46,11 @@ const puppeteer = require('puppeteer');
   for (const internship of internships) {
     console.log(`Applying for internship: ${internship.name}`);
 
-    // Click on the internship to view details and apply
     await page.click(`#${internship.id}`);
     await new Promise(function (resolve, reject) {
       return setTimeout(resolve, 2000);
   });
-    // Apply for the internship
+
     await page.waitForSelector('.continue_container')
     await page.click('#continue_button');
     try{
