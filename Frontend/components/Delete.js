@@ -14,7 +14,7 @@ const DeleteInternDetails = ({ setInternEmail, setInternPassword, setCoverLetter
       const decodedToken = jwtDecode(token);
       const userId = decodedToken._id;
 
-      // Sending DELETE request to delete intern details
+  
       const deleteResponse = await fetch(`http://localhost:8080/apply/delete-credentials`, {
         method: 'DELETE',
         headers: {
@@ -32,10 +32,10 @@ const DeleteInternDetails = ({ setInternEmail, setInternPassword, setCoverLetter
       const result = await deleteResponse.json();
       toast.success(result.message);
 
-      // Clear the intern details from the state
+     
       setInternEmail('');
       setInternPassword('');
-      setCoverLetter(''); // Corrected prop name
+      setCoverLetter(''); 
     } catch (error) {
       console.error('Error:', error);
       toast.error('Error: ' + error.message);

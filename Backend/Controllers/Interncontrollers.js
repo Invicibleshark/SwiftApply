@@ -11,7 +11,6 @@ const Interncontrollers = async (req, res) => {
 
         const { Internemail, Internpassword,coverletter } = req.body;
 
-        // Validate input
         if (!Internemail || !Internpassword) {
             return res.status(400).json({ message: "Internemail , Internpassword and Cover Letter are required" });
         }
@@ -20,7 +19,7 @@ const Interncontrollers = async (req, res) => {
             Internemail,
             Internpassword,
             coverletter,
-            owner // Use owner directly, as it's already set correctly
+            owner 
         });
 
         await newInternauth.save();

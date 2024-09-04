@@ -21,7 +21,7 @@ const Home = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('loggedinuser');
-    toast.success('User Logged Out'); // Show success toast
+    toast.success('User Logged Out'); 
     setTimeout(() => {
       navigate('/login');
     }, 1000);
@@ -66,7 +66,6 @@ const Home = () => {
       <div className="min-h-screen bg-gray-100">
         <Navbar user={user} handleLogout={handleLogout} />
 
-        {/* Form Section */}
         <div className="max-w-md mx-auto mt-5 p-6 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-semibold mb-6">Internshala Application</h2>
           <form onSubmit={handleSubmit} className="space-y-4">

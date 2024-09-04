@@ -29,7 +29,7 @@ const CompanyList = () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({ userId }), // Including userId in the request body
+          body: JSON.stringify({ userId }), 
         });
 
         if (!response.ok) {
@@ -49,7 +49,7 @@ const CompanyList = () => {
     fetchCompanies();
   }, []);
 
-  const onDelete = async (companyName) => { // Accept companyName as the parameter
+  const onDelete = async (companyName) => { 
     try {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -65,7 +65,7 @@ const CompanyList = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ companyName, userId }), // Send companyName and userId in the request body
+        body: JSON.stringify({ companyName, userId }), 
       });
 
       if (!response.ok) {
@@ -100,7 +100,7 @@ const CompanyList = () => {
                 <h3 className="text-xl font-semibold mb-2 text-gray-900">{company.companyname}</h3>
                 <p className="text-gray-700">Status: <span className={`font-medium ${company.status === 'Success' ? 'text-green-600' : 'text-red-600'}`}>{company.status}</span></p>
                 <button
-                  onClick={() => onDelete(company.companyname)} // Pass company.companyname to onDelete
+                  onClick={() => onDelete(company.companyname)} 
                   className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                   aria-label="Delete"
                 >
